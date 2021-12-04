@@ -190,28 +190,42 @@ sudo usermod -aG docker ec2-user
 ******
 
 <details>
-<summary>Exercise 5: Run Node App </summary>
+<summary>EXERCISE 6: Add docker-compose for deployment </summary>
  <br />
 
-**steps:**
+**docker-compose.yaml:**
+
 ```sh
-# ssh into droplet
-ssh -i ~/id_rsa root@{server-ip-address}
-
-# unpack the node-project file
-tar zxvf bootcamp-node-project-1.0.0.tgz
-
-# change into unpacked directory called "package"
-cd package
-
-# install dependencies
-npm install
-
-# run the application
-node server.js
+version: '3.8'
+services:
+    nodejs-app:
+      image: ${IMAGE}
+      ports:
+        - 3000:3000
 
 ```
 
 </details>
 
 ******
+
+<details>
+<summary>EXERCISE 7: Add "deploy to EC2" step to your pipeline </summary>
+ <br />
+
+**Jenkinsfile:**
+
+```sh
+
+
+```
+
+</details>
+
+******
+
+
+
+
+
+
