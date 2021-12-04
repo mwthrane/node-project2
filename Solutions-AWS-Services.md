@@ -360,6 +360,7 @@ pipeline {
 ```
 
 **Add webhook to trigger pipeline automatically**
+
 Refer to the demo video for this
 
 </details>
