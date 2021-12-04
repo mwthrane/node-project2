@@ -190,7 +190,7 @@ sudo usermod -aG docker ec2-user
 ******
 
 <details>
-<summary>EXERCISE 6: Add docker-compose for deployment </summary>
+<summary>Exercise 6: Add docker-compose for deployment </summary>
  <br />
 
 **docker-compose.yaml:**
@@ -210,7 +210,7 @@ services:
 ******
 
 <details>
-<summary>EXERCISE 7: Add "deploy to EC2" step to your pipeline </summary>
+<summary>Exercise 7: Add "deploy to EC2" step to your pipeline </summary>
  <br />
 
 
@@ -271,7 +271,7 @@ pipeline {
 
 
 <details>
-<summary>EXERCISE 8: Configure access from browser (EC2 Security Group) </summary>
+<summary>Exercise 8: Configure access from browser (EC2 Security Group) </summary>
  <br />
 
 **Open application's port 3000 in security group to make app accessible from browser**
@@ -286,7 +286,7 @@ aws ec2 authorize-security-group-ingress --group-id sg-id --protocol tcp --port 
 ******
 
 <details>
-<summary>EXERCISE 9: Configure automatic triggering of pipeline </summary>
+<summary>Exercise 9: Configure automatic triggering of pipeline </summary>
  <br />
 
 **Add branch based logic to Jenkinsfile**
