@@ -132,7 +132,7 @@ aws ec2 associate-route-table  --subnet-id subnet-id --route-table-id rtb-id
 
 ```
 
-***Create security group in the VPC to allow access on port 22
+**Create security group in the VPC to allow access on port 22**
 ```sh
 # Create security group - this will print security group id as output
 aws ec2 create-security-group --group-name SSHAccess --description "Security group for SSH access" --vpc-id vpc-id
@@ -150,7 +150,7 @@ aws ec2 authorize-security-group-ingress --group-id sg-id --protocol tcp --port 
 <summary>Exercise 4: Create EC2 instance </summary>
  <br />
 
-***Create EC2 instance into our subnet
+**Create EC2 instance into our subnet**
 ```sh
 # Create key pair, save it locally in pem file and set stricter permission on it for later use
 aws ec2 create-key-pair --key-name WebServerKeyPair --query "KeyMaterial" --output text > WebServerKeyPair.pem
