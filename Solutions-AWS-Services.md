@@ -142,6 +142,13 @@ aws ec2 authorize-security-group-ingress --group-id sg-id --protocol tcp --port 
 # You can also specify your IP address CIDR block instead of 0.0.0.0/0 for more security
 
 ```
+</details>
+
+******
+
+<details>
+<summary>Exercise 4: Create EC2 instance </summary>
+ <br />
 
 ***Create EC2 instance into our subnet
 ```sh
@@ -154,7 +161,6 @@ aws ec2 run-instances --image-id ami-a4827dc9 --count 1 --instance-type t2.micro
 
 # Validate that EC2 instance is in a running state, and get its public ip address to connect via ssh
 aws ec2 describe-instances --instance-id i-0146854b7443af453 --query "Reservations[*].Instances[*].{State:State.Name,Address:PublicIpAddress}"
-
 
 ```
 
