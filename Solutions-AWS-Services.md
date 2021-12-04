@@ -270,6 +270,102 @@ pipeline {
 ******
 
 
+<details>
+<summary>EXERCISE 8: Configure access from browser (EC2 Security Group) </summary>
+ <br />
+
+**Open application's port 3000 in security group to make app accessible from browser**
+
+```sh
+aws ec2 authorize-security-group-ingress --group-id sg-id --protocol tcp --port 3000 --cidr 0.0.0.0/0
+
+```
+
+</details>
+
+******
+
+<details>
+<summary>EXERCISE 9: Configure automatic triggering of pipeline </summary>
+ <br />
+
+**Add branch based logic to Jenkinsfile**
+
+```sh
+# when the currently building branch is master, execute all steps. If it's not master, execute only the "run tests" step
+pipeline {
+    agent any
+      tools {
+        nodejs "node"
+      }
+      stages {
+        stage('increment version') {
+          when {
+            expression {
+              return env.GIT_BRANCH == "master"
+            }
+          }
+          steps {
+            script {
+                ...  
+            }
+          }
+        }
+        stage('Run tests') {
+          steps {
+            script {
+                ...  
+            }
+          }
+        }
+        stage('Build and Push docker image') {
+          when {
+            expression {
+              return env.GIT_BRANCH == "master"
+            }
+          }
+          steps {
+            script {
+                ...  
+            }
+          }
+        }
+        stage('deploy to EC2') {
+          when {
+            expression {
+              return env.GIT_BRANCH == "master"
+            }
+          }
+          steps {
+            script {
+                ...  
+            }
+          }
+        }
+        stage('commit version update') {
+          when {
+            expression {
+              return env.GIT_BRANCH == "master"
+            }
+          }
+          steps {
+            script {
+                ...  
+            }
+          }  
+        }
+    }     
+}
+
+```
+
+**Add webhook to trigger pipeline automatically**
+Refer to the demo video for this
+
+</details>
+
+******
+
 
 
 
