@@ -213,10 +213,55 @@ services:
 <summary>EXERCISE 7: Add "deploy to EC2" step to your pipeline </summary>
  <br />
 
-**Jenkinsfile:**
 
+**Create ssh keys credentials in Jenkins**
+- name the keys credentials: `ec2-server-key` and add the private ssh key from `WebServerKeyPair.pem` as its content. You will use this to ssh into the EC2 server from Jenkins 
+
+**Create server-cmds.sh file**
 ```sh
+export IMAGE=$1
+docker-compose -f docker-compose.yaml up --detach
+echo "success"
+```
 
+Complete the Jenkinsfile from the previous exercise: 8 - Build Automation & CI/CD with Jenkins
+
+**Jenkinsfile:**
+```sh
+pipeline {
+    agent any
+      tools {
+        nodejs "node"
+      }
+      stages {
+        stage('increment version') {
+          ...
+        }
+        stage('Run tests') {
+          ...
+        }
+        stage('Build and Push docker image') {
+          ...
+        }
+        stage('deploy to EC2') {
+            steps {
+                script {
+                   def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
+                   def ec2Instance = "ec2-user@public-ip-address"
+
+                   sshagent(['ec2-server-key']) {
+                       sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2Instance}:/home/ec2-user"
+                       sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2Instance}:/home/ec2-user"
+                       sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${shellCmd}"
+                   }     
+                }
+            }
+        }
+        stage('commit version update') {
+          ...
+        }
+    }     
+}
 
 ```
 
