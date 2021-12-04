@@ -107,11 +107,11 @@ aws ec2 create-vpc --cidr-block 10.0.0.0/16 --query Vpc.VpcId --output text
 
 # Create subnet in the VPC
 aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.0.1.0/24
+
 ```
 
-```sh
 **Make our subnet public by attaching it internet gateway**
-
+```sh
 # Create internet gateway & return the gateway id
 aws ec2 create-internet-gateway --query InternetGateway.InternetGatewayId --output text
 
