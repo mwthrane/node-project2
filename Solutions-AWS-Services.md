@@ -174,10 +174,9 @@ aws ec2 describe-instances --instance-id i-0146854b7443af453 --query "Reservatio
 
 **steps:**
 ```sh
-# ssh into EC2 instance using th epublic IP address we got earlier. 
-ssh -i "WebServerKeyPair.pem" ec2-user@public-ip-address
+# ssh into EC2 instance using th epublic IP address we got earlier
 # Note: EC2 must be in a running state & relative path to WebServerKeyPair.pem must be correct
-
+ssh -i "WebServerKeyPair.pem" ec2-user@public-ip-address
 
 # Install Docker, start docker service and allow ec2-user to run docker commands without sudo by adding it to docker group
 sudo yum update -y && sudo yum install -y docker
