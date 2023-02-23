@@ -4,27 +4,7 @@ pipeline {
         nodejs "node"
     }
     stages {
-        stage('increment version') {
-            steps {
-                script {
-
-                    dir("app") {
-
-                        npm version minor
-
-
-                        def packageJson = readJSON file: 'package.json'
-                        def version = packageJson.version
-
-
-                       IMAGE_NAME = "nodejs-app"
-                       IMAGE_VER = "2"
-                    }
-
-
-                }
-            }
-        }
+        
         stage('Run tests') {
             steps {
                script {
