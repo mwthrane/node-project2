@@ -39,9 +39,9 @@ pipeline {
         stage('Build and Push docker image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'hub.docker', usernameVariable: 'USER', passwordVariable: 'PWD')]){
-                    sh "docker build -t docker-hub-id/myapp:${IMAGE_NAME} ."
+                    sh "docker build -t mwthrane/demo-app:${IMAGE_NAME} ."
                     sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
-                    sh "docker push docker-hub-id/myapp:${IMAGE_NAME}"
+                    sh "docker push mwthrane/demo-app:${IMAGE_NAME}"
                 }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
 
-                        sh "git remote set-url origin https://${USER}:${PWD}@gitlab.com/devops-bootcamp3/node-project.git"
+                        sh "git remote set-url origin https://${USER}:${PWD}@hgithub.com/mwthrane/node-project2.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:jenkins-jobs'
