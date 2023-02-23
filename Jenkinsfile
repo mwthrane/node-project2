@@ -17,7 +17,8 @@ pipeline {
                         def version = packageJson.version
 
 
-                       /env.IMAGE_NAME = "2"
+                       IMAGE_NAME = "nodejs-app"
+                       IMAGE_VER = "2"
                     }
 
 
